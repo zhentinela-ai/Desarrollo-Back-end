@@ -1,0 +1,35 @@
+>create schema productos default character set utf8;
+>use productos;
+>create table productos(
+    -> id int(10) not null auto_increment,
+    -> nombre varchar(255) not null,
+    -> codigo int,
+    -> precio float,
+    -> primary key (id));
+>create user cliente identified by '123456';
+>grant select on productos.productos to 'cliente'@'%';
+>create user gerente identified by 'miclavegerente';
+>grant all privileges on productos.productos to 'gerente'@'%';
+
+// Puntos de verificación
+1. Verifica la tabla: Revisa que tenga todos los campos.
+>describe productos;
+2. Conectáte con el usuario ‘cliente’.
+->mysql -u cliente -p productos
+3. Realiza un SELECT y verifica que funciona.
+>select * from productos;
+4. Realiza un INSERT y verifica que no está permitido.
+>insert into productos set nombre = "camisa";
+ERROR 1142 (42000): INSERT command denied to user 'cliente'@'localhost' for table 'productos'
+5. Vuelve a conectarte pero ahora con el usuario ‘gerente’.
+>mysql -u gerente -p productos
+6. Realiza un SELECT y verifica que funciona.
+>select * FROM productos;
+7. Realiza un INSERT y verifica que también funciona.
+>insert into productos set nombre = "camisa", codigo = 9821, precio = 5.6;
+Query OK, 1 row affected (0.00 sec)
+
+
+
+
+

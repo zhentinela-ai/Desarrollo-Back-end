@@ -1,0 +1,92 @@
+<% const lastChair = funcion.lugar.capacidad - currentCapacity %> 
+<div class="reservations">
+  <div class="time">
+    <h1 id="time"></h1>
+    <form hidden name="formDiscard" action="/" method="GET"></form>
+  </div>
+
+  <div class="event-function">
+    <p>Evento</p>
+    <p><%= funcion.evento.nombre %></p>
+    <p>Función</p>
+    <p><%= funcion.hora %></p>
+    <p>Asientos</p>
+    <p>
+      <% for( let i = lastChair + 1; i <= lastChair + quantity; i++ ) { %>
+        Silla 
+        <% if ((lastChair + quantity) === i) { %>
+          <%= i %>
+        <% } else { %>
+          <%= i %>,
+        <% } %>
+      <% } %>
+    </p>
+  </div>
+
+  <form class="form-reservation" action="/" name="formReservation" method="GET">
+    <input type="hidden" value="<%= funcion.id %>" name="functionId">
+    <input type="hidden" value="<%= funcion.lugar.id %>" name="placeId">
+    <input type="hidden" value="<%= quantity%>" name="quantity">
+    <label for="email">Email</label>
+    <input required placeholder="Ingrese su Email" type="email" name="email" autofocus>
+    <label for="phone">Télefono</label>
+    <input placeholder="Ingrese su teléfono" type="text" name="phone">
+    <input required id="submit" type="submit" value="Reservar" class="btn btn-success">
+  </form>
+
+  <p>Derechos Reservados.</p>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    var timeElement = document.getElementById("time");
+    const formDiscard = document.getElementById("form-discard");
+
+    function sleep(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    let time = 301;
+    function updateCountdown() {
+      time -= 1;
+      minute = Math.floor(time / 60);
+      second = time % 60;
+
+      timeElement.textContent = `Tiempo: ${minute}:${
+        second < 10 ? `0${second}` : second
+      }`;
+
+      let form = document.formDiscard;
+
+      if (time === 0) {
+        envioAutomatico();
+      }
+
+      function enviarFormulario(e) {
+        e = window.event;
+        if (time === 0) {
+          e.preventDefault();
+        }
+      }
+
+      function envioAutomatico() {
+        form.addEventListener("submit", enviarFormulario);
+        form.submit();
+      }
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  });
+
+  const formReservation = document.formReservation;
+
+  formReservation.addEventListener("submit", (e) => {
+    // e.preventDefault();
+    let formData = new FormData(e.currentTarget);
+
+    fetch("/reservas/crear-reserva", {
+      method: "POST",
+      body: formData,
+    });
+  });
+</script>

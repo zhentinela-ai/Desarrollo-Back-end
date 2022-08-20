@@ -1,0 +1,45 @@
+<div id="modal" class="modal">
+  <% eventos.forEach(evento => { %>
+  <div id="modal-container-<%= evento.id %>" class="modal-container">
+    <div class="modal-header">
+      <h3>Editar Evento</h3>
+      <button id="cerrarx-<%= evento.id %>" class="btn btn-sm" onclick="handleModal(this);">x</button>
+    </div>
+    <hr />
+      <% const { id, nombre, imagen } = evento %>
+      <% nombreTemp = nombre.replace(/ /g, "_") %>
+      <form action="/admin/principal" id="edit-form-<%= nombreTemp %>">
+        <div class="modal-body">
+          <input hidden type="text" name="eventId" value="<%= id %> ">
+          <label for="name">Nombre</label>
+          <input 
+            class="name" type="text"
+            value="<%= nombre %>" 
+            name="name"
+            id="name-<%= nombreTemp %>"
+            required
+            />
+          <label for="image">Imagen</label>
+          <img
+            src="<%= imagen %> "
+            alt="imagen del evento: <%= nombre %>"
+            id="image-<%= nombreTemp %>"
+          />
+          <input
+            style="margin-bottom: 20px"
+            type="file"
+            name="image"
+            src="<%= imagen %>"
+            id="file-<%= nombreTemp %>"
+            required
+          />
+        </div>
+        <hr />
+        <div class="modal-footer">
+          <button type="reset" id="cerrarbutton-<%= evento.id %> " class="btn btn-danger btn-sm" onclick="handleModal(this);">Cerrar</button>
+          <button id="submit-<%= nombreTemp %>" type="submit" class="btn btn-success btn-sm">Continuar</button>
+        </div>
+      </form>
+    </div>
+  <% }) %>
+</div>

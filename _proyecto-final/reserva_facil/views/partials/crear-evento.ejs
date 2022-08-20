@@ -1,0 +1,37 @@
+<div id="modal-create" class="modal-create-event">
+  <div id="modal-container" class="modal-container">
+    <div class="modal-header">
+      <h3>Crear Evento</h3>
+      <button class="btn btn-sm" onclick="handleModalCreate(this);">
+        x
+      </button>
+    </div>
+    <hr />
+    <form action="/admin/principal" id="create-form">
+      <div class="modal-body">
+        <label for="name">Nombre</label>
+        <input class="name" type="text" name="name" id="name" required />
+        <label for="image">Imagen</label>
+        <img
+          style="display: none"
+          alt="imagen del evento nuevo evento"
+          id="image"
+        />
+        <input style="margin-bottom: 20px" type="file" name="image" id="file" required />
+      </div>
+      <hr />
+      <div class="modal-footer">
+        <button
+          type="reset"
+          class="btn btn-danger btn-sm"
+          onclick="handleModalCreate(this);"
+        >
+          Cerrar
+        </button>
+        <button type="submit" class="btn btn-success btn-sm">
+          Continuar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

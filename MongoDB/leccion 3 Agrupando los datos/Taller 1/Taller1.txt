@@ -1,0 +1,26 @@
+>use ensambladora;
+>db.createCollection("partes");
+>db.partes.insert({ nombre: "Parte1", precio: 20 });
+>db.partes.insert({ nombre: "Parte2", precio: 30 });
+>db.partes.insert({ nombre: "Parte3", precio: 40 });
+>db.partes.insert({ nombre: "Parte5", precio: 20 });
+>db.partes.insert({ nombre: "Parte6", precio: 40 });
+>db.partes.insert({ nombre: "Parte6", precio: 60 });
+
+>db.partes.count();
+
+>db.partes.distinct("precio");
+[ 20, 30, 40, 60 ]
+>db.partes.aggregate([ { $project: { nombre: 1, _id: 0 } } ]);
+{ "nombre" : "Parte1" }
+{ "nombre" : "Parte2" }
+{ "nombre" : "Parte3" }
+{ "nombre" : "Parte5" }
+{ "nombre" : "Parte6" }
+{ "nombre" : "Parte6" }
+
+
+
+
+
+

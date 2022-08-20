@@ -1,0 +1,32 @@
+>use ciencia;
+>db.getUsers();
+[ ]
+>db.create		// result
+db.createCollection(  db.createUser(
+db.createRole(        db.createView(
+>db.createUser({ user: "test1", pwd: "123123", roles: [ "read" ] });
+Successfully added user: { "user" : "test1", "roles" : [ "read" ] }
+>db.getUsers();
+[
+        {
+                "_id" : "ciencia.test1",
+                "userId" : UUID("630b70ae-0040-402e-9478-19bb569a0198"),
+                "user" : "test1",
+                "db" : "ciencia",
+                "roles" : [
+                        {
+                                "role" : "read",
+                                "db" : "ciencia"
+                        }
+                ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        }
+]
+-mongo -u test1 -p 123123 ciencia
+>db.carros.insert({ color: "rojo" }); x3
+
+-mongo
+

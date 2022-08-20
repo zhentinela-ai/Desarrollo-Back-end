@@ -1,0 +1,21 @@
+--
+CREATE TABLE `ejemplos`.`atletas` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(255) NOT NULL,
+  `edad` INT NOT NULL,
+  `peso` FLOAT NOT NULL,
+  `estatura` FLOAT NOT NULL,
+  `carreras_competitivas` INT NOT NULL,
+  `carreras_ganadas` INT NOT NULL,
+  PRIMARY KEY (`id`))
+COMMENT = '				';
+
+--
+INSERT INTO `ejemplos`.`atletas` (`nombre`, `edad`, `peso`, `estatura`, `carreras_competitivas`, `carreras_ganadas`) VALUES ('Michael', '34', '80', '1.84', '50', '43');
+INSERT INTO `ejemplos`.`atletas` (`nombre`, `edad`, `peso`, `estatura`, `carreras_competitivas`, `carreras_ganadas`) VALUES ('Joe', '20', '75.4', '1.80', '23', '15');
+INSERT INTO `ejemplos`.`atletas` (`nombre`, `edad`, `peso`, `estatura`, `carreras_competitivas`, `carreras_ganadas`) VALUES ('Tayson', '42', '88.6', '1.74', '40', '40');
+
+--
+ALTER TABLE `ejemplos`.`atletas` 
+CHANGE COLUMN `carreras_competitivas` `carreras_competidas` INT NOT NULL ;
+

@@ -1,0 +1,29 @@
+--
+CREATE TABLE `empresa`.`empleados` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(255) NOT NULL,
+  `username` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`));
+
+--
+#INSERT INTO usuarios (nombre, email) VALUES ("luis", "luis@gmail.com");
+#INSERT INTO usuarios (nombre, email) VALUES ("maría", "maria@gmail.com");
+#INSERT INTO usuarios (nombre, email) VALUES ("pedro", "pedro@gmail.com");
+
+--
+INSERT INTO aplicaciones (nombre, url) VALUES ("app1", "https://app1.com");
+INSERT INTO aplicaciones (nombre, url) VALUES ("app2", "https://app2.com");
+
+--
+INSERT INTO tipo_usuarios (descripcion) VALUES ("Análista, análista de bigdata");
+
+--
+INSERT INTO permisos (usuario_id, tipo_usuarios_id, aplicacion_id) VALUES (5, 4, 4);
+INSERT INTO permisos (usuario_id, tipo_usuarios_id, aplicacion_id) VALUES (4, 2, 2);
+INSERT INTO permisos (usuario_id, tipo_usuarios_id, aplicacion_id) VALUES (6, 4, 5);
+
+--
+INSERT INTO empleados (email, username) VALUES ("maria@gmail.com", "mariaDelCarmen");
+INSERT INTO empleados (email, username) VALUES ("jd@gmail.com", "zhent");
+INSERT INTO empleados (email, username) VALUES ("pedro@gmail.com", "pedroCasas");
+INSERT INTO empleados (email, username) VALUES ("luis@gmail.com", "luisgamer");

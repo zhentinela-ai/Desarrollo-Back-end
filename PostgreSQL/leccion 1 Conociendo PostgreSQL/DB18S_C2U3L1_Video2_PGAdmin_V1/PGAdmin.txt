@@ -1,0 +1,4 @@
+SELECT nombre, descripcion 
+FROM usuarios 
+JOIN tipo_usuarios ON usuarios.tipo_usuario_id = tipo_usuarios.id;
+

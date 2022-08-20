@@ -1,0 +1,21 @@
+<div class="event-header">
+  <h1>Envento: <%= evento.nombre %></h1>
+  <div class="edit-delete">
+    <button
+      data-index="<%= i %>"
+      id="<%= evento.id %>"
+      class="btn btn-primary"
+      onclick="handleModal(this);"
+    >
+      Editar
+    </button>
+    <span></span>
+    <button
+      data-name="<%= evento.nombre %>"
+      id="delete-<%= evento.id %>"
+      class="btn btn-danger"
+    >
+      Eliminar
+    </button>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+SELECT * FROM transacciones GROUP BY articulo_id
+
+SELECT articulo_id, sum(cantidad) FROM transacciones GROUP BY articulo_id
+
+SELECT articulo_id, sum(cantidad) cantidad_total FROM transacciones GROUP BY articulo_id
+
+SELECT articulo_id, sum(cantidad) cantidad_total FROM transacciones GROUP BY articulo_id HAVING sun(cantidad) > 10
+
+SELECT articulo_id, sum(cantidad) cantidad_total FROM transacciones WHERE articulo_id <> ó != 1000 GROUP BY articulo_id HAVING sun(cantidad) > 10
+
+SELECT articulo_id, sum(cantidad) cantidad_total FROM transacciones WHERE precio > 300 GROUP BY articulo_id HAVING sun(cantidad) > 10
+
+SELECT articulo_id, sum(cantidad) cantidad_total FROM transacciones GROUP BY articulo_id HAVING articulo_id, fecha
+

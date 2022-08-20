@@ -1,0 +1,26 @@
+-- SELECT * FROM jugadores;
+-- SELECT * FROM equipos;
+
+
+SELECT nombre, puntos 
+FROM jugadores
+WHERE dias_jugados <= 7
+ORDER BY puntos;
+
+-- SELECT * FROM novatos;
+
+ SELECT equipos.nombre nombre, SUM(jugadores.puntos) sum
+   FROM jugadores
+     JOIN equipos ON jugadores.equipo_id = equipos.id
+	 	GROUP BY equipos.nombre
+
+DROP MATERIALIZED VIEW IF EXISTS public.equipos_con_puntos;
+CREATE MATERIALIZED VIEW IF NOT EXISTS public.equipos_con_puntos
+ AS
+ SELECT equipos.nombre nombre, SUM(jugadores.puntos) sum
+   FROM jugadores
+     JOIN equipos ON jugadores.equipo_id = equipos.id
+	 	GROUP BY equipos.nombre
+ WITH DATA;
+
+SELECT * FROM equipos_con_puntos;

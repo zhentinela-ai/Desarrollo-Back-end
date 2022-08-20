@@ -1,0 +1,35 @@
+---STRINGS
+
+SELECT * FROM documentos
+WHERE palabras_clave LIKE '%negr%';
+
+SELECT * FROM documentos
+WHERE palabras_clave LIKE '%Negr%' // devuelve null, porque si diferencia entre mayúsculas y mínusculas.
+
+
+SELECT * FROM documentos
+WHERE palabras_clave ILIKE '%Negr%';
+
+SELECT * FROM documentos
+WHERE palabras_clave ~ 'negr';
+
+
+SELECT * FROM documentos
+WHERE palabras_clave ~ 'Negr'; // igualmente devuelve null
+
+SELECT * FROM documentos
+WHERE palabras_clave ~* 'Negr';
+
+
+--- DATES
+
+SELECT fecha_publicada FROM documentos;
+SELECT fecha_publicada + 20 FROM documentos;
+
+SELECT EXTRACT(month FROM fecha_publicada) AS mes FROM documentos;
+
+
+
+
+
+

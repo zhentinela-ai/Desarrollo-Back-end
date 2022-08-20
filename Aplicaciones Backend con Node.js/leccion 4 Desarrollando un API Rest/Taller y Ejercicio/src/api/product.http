@@ -1,0 +1,20 @@
+@api = http://localhost:8080/api/productos/
+
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Lente OLED",
+  "cantidad": 10,
+  "precio": 25.52
+}
+
+### 
+PUT {{api}}/15
+Content-Type: application/json
+
+{
+  "nombre": "Microfono",
+  "cantidad": 16,
+  "precio": 1000.2
+}

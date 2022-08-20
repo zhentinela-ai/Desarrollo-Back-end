@@ -1,0 +1,46 @@
+<div id="modal-create-function" class="modal-create-funtion">
+  <div id="modal-container-function" class="modal-container">
+    <div class="modal-header">
+      <h3>Agregar Función</h3>
+      <button class="btn btn-sm" onclick="handleModalCreateFunction(this);">x</button>
+    </div>
+    <hr />
+    <% eventos.forEach(evento => { %>
+      <% evento.lugares.forEach(lugar => { %>
+        <form action="/admin/principal" style="display: none;" id="create-function-form-<%= evento.id %>-<%= lugar.id %>" class="function-forms">
+          <div class="modal-body">
+            <p>Evento</p>
+            <p><%= evento.nombre %></p>  
+            <p>Lugar</p>
+            <p><%= lugar.lugar %></p>
+            <label for="hour">Hora</label>
+            <select class="hour" name="hour" id="hour" required >
+              <option value="1:00 pm">1:00 pm</option>
+              <option value="2:00 pm">2:00 pm</option>
+              <option value="3:00 pm">3:00 pm</option>
+              <option value="4:00 pm">4:00 pm</option>
+              <option value="5:00 pm">5:00 pm</option>
+              <option value="6:00 pm">6:00 pm</option>
+              <option value="7:00 pm">7:00 pm</option>
+              <option value="8:00 pm">8:00 pm</option>
+              <option value="9:00 pm">9:00 pm</option>
+              <option value="10:00 pm">10:00 pm</option>
+              <option value="11:00 pm">11:00 pm</option>
+            </select>
+          </div>
+          <hr />
+          <div class="modal-footer">
+            <button
+              type="reset"
+              class="btn btn-danger btn-sm"
+              onclick="handleModalCreateFunction(this);"
+            >
+              Cerrar
+            </button>
+            <button type="submit" class="btn btn-success btn-sm">Continuar</button>
+          </div>
+        </form>
+      <% }) %>
+    <% }) %>
+  </div>
+</div>

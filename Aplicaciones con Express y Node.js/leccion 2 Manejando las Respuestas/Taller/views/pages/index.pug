@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Ejemplo de PUG
+  body 
+  h1 Bienvenido a pug
+  p Esta es una página de ejemplo de PUG
+  //- has un for loop de una lista de elementos
+  ul
+    for item in [1, 2, 3, 4, 5]
+      li #{item}
+  //- has un for loop de una lista de elementos con un concional que solamente imprima los pares
+  ul
+    for item in [1, 2, 3, 4, 5]
+      li #{item}
+      if item % 2 == 0
+        li.par #{item}
+      else
+        li.impar #{item}

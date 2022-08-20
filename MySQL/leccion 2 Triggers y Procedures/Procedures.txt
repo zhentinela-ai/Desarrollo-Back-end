@@ -1,0 +1,64 @@
+--
+USE `ejemplos`;
+DROP procedure IF EXISTS `resumen_gastos_personales`;
+
+DELIMITER $$
+USE `ejemplos`$$
+CREATE PROCEDURE `resumen_gastos_personales` (
+OUT promedio FLOAT,
+OUT maximo FLOAT,
+OUT minimo FLOAT
+)
+BEGIN
+	SELECT AVG(gastos_personales) INTO promedio FROM clientes;
+    SELECT MAX(gastos_personales) INTO maximo FROM clientes;
+    SELECT MIN(gastos_personales) INTO minimo FROM clientes;
+END$$
+
+DELIMITER ;
+
+--
+set @promedio = 0;
+set @maximo = 0;
+set @minimo = 0;
+call ejemplos.resumen_gastos_personales(@promedio, @maximo, @minimo);
+select @promedio, @maximo, @minimo;
+
+// Modificado para tener una variable de entrada
+--
+USE `ejemplos`;
+DROP procedure IF EXISTS `resumen_gastos_personales`;
+
+USE `ejemplos`;
+DROP procedure IF EXISTS `ejemplos`.`resumen_gastos_personales`;
+;
+
+DELIMITER $$
+USE `ejemplos`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `resumen_gastos_personales`(
+IN umbral FLOAT,
+OUT promedio FLOAT,
+OUT maximo FLOAT,
+OUT minimo FLOAT
+)
+BEGIN
+	SELECT AVG(gastos_personales) INTO promedio FROM clientes WHERE gastos_personales > umbral;
+    SELECT MAX(gastos_personales) INTO maximo FROM clientes WHERE gastos_personales > umbral;
+    SELECT MIN(gastos_personales) INTO minimo FROM clientes WHERE gastos_personales > umbral;
+END$$
+
+DELIMITER ;
+;
+
+--
+set @promedio = 0;
+set @maximo = 0;
+set @minimo = 0;
+call ejemplos.resumen_gastos_personales(100, @promedio, @maximo, @minimo);
+select @promedio, @maximo, @minimo;
+
+
+
+
+
+

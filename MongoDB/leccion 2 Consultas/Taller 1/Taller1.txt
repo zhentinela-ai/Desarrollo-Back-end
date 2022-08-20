@@ -1,0 +1,29 @@
+>use empresa
+>db.createCollection("proveedores");
+>db.proveedores.insert([
+			{
+			   nombre:"P1",
+			   capital:100000
+			}, 
+			{
+			   nombre:"P2",
+			   capital:10000
+			}, 
+			{
+			   nombre:"P3",
+			   capital:10
+			}, 
+			{
+			   nombre:"P4",
+			   capital:100
+			}, 
+			{
+			   nombre:"P5",
+			   capital:1000
+			}]);
+>db.proveedores.find().pretty();
+>db.proveedores.find().sort({ capital: 1 }).pretty();
+>db.proveedores.find().sort({ capital: -1 }).pretty();
+>db.proveedores.find().sort({ capital: 1 }).limit(3).pretty();
+
+

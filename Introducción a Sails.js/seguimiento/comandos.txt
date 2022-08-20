@@ -1,0 +1,15 @@
+-- sails new webapp --fast
+-- yarn install 
+-- sails generate page contacto
+-- sails lift
+-- yarn add sails-postgresql --save
+-- sails generate model Vendedor nombre:string desde:number
+-- sails generate action editar
+
+
+
+
+
+
+
+

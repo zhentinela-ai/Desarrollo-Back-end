@@ -1,0 +1,6 @@
+.set-shadows(@r:0, @g:0, @b:0, @opacity:1) {
+  box-shadow: 0 0 3px rgba(@r, @g, @b, @opacity * .2),
+              0 0 6px rgba(255, 255, 255, @opacity * .4),
+              0 0 9px rgba(@r, @g, @b, @opacity * .6),
+              0 0 12px rgba(255, 255, 255, @opacity * .8);
+}

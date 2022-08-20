@@ -1,0 +1,9 @@
+<h1>Contacto</h1>
+<p>
+  <ul>
+    <% vendedores.forEach( vendedor => { %>
+    <li><%=vendedor.nombre%> (Desde: <%=vendedor.desde%>)</li>
+    <% }) %>
+  </ul>
+</p>
+

@@ -1,0 +1,6 @@
+--
+ALTER TABLE `corporacion`.`productos` 
+CHANGE COLUMN `precio` `coste` FLOAT NOT NULL DEFAULT '0' ;
+--
+ALTER TABLE `corporacion`.`productos` 
+CHANGE COLUMN `precio` `precio` FLOAT NOT NULL DEFAULT '0' AFTER `nombre`;

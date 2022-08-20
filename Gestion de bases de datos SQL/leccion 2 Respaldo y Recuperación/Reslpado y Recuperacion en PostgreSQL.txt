@@ -1,0 +1,9 @@
+-- pg_dump --help
+-- pg_dump -U admin -W -x -O -d prueba
+-- pg_dump -U postgres -W -x -O -d prueba > respaldoPGSQL.sql
+
+-- psql postgres postgres
+#\l
+#create database mi_empresa;
+
+-- psql -U postgres -W -d mi_empresa ~ respaldoPGSQL.sql

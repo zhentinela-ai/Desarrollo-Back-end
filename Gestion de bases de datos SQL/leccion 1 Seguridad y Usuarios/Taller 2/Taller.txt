@@ -1,0 +1,42 @@
+CREATE ROLE visitante WITH
+	LOGIN
+	NOSUPERUSER
+	NOCREATEDB
+	NOCREATEROLE
+	INHERIT
+	NOREPLICATION
+	CONNECTION LIMIT -1
+	PASSWORD 'xxxxxx';
+
+CREATE ROLE admin WITH
+	LOGIN
+	NOSUPERUSER
+	NOCREATEDB
+	NOCREATEROLE
+	INHERIT
+	NOREPLICATION
+	CONNECTION LIMIT -1
+	PASSWORD 'xxxxxx';
+
+GRANT ALL ON TABLE public.obras_de_arte TO postgres;
+
+GRANT SELECT ON TABLE public.obras_de_arte TO visitante;
+
+GRANT ALL ON TABLE public.obras_de_arte TO admin;
+
+1. Verifica la tabla; revisa que tenga todos los campos.
+#SELECT * FROM public.obras_de_arte
+ORDER BY id ASC 
+2. Conectáte con el usuario ‘visitante’.
+3. Realiza un SELECT y verifica que funciona.
+#SELECT * FROM public.obras_de_arte
+ORDER BY id ASC 
+successfully
+4. Realiza un INSERT y verifica que no está permitido.
+error permiso denegado
+5. Vuelve a conectarte pero ahora con el usuario ‘admin’.
+6. Realiza un INSERT y verifica que funciona.
+data saved successfully
+
+
+

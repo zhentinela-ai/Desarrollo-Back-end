@@ -1,0 +1,16 @@
+>use app;
+>db.createCollection("peliculas");
+>db.peliculas.insert([ { nombre: "El mar negro", puntos: 5, genero: "comedia" }, { nombre: "Vive", genero: "comedia" }, { nombre: "Ayer te vi", genero: "drama" } ]);
+//resultado
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 3,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+>db.peliculas.find();
+>db.peliculas.find({ puntos: null });

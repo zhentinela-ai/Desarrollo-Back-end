@@ -1,0 +1,5 @@
+> db.<coleccion>.count()
+> db.<coleccion>.distinct(“atributo”) 
+> db.<coleccion>.aggregate([{$project: { atributo, nuevo_atributo: {operaciones}}}])
+> db.<coleccion>.aggregate([{$group:{_id: “$atributo”, atributo_agregado: {funcion_agregada}}}])
+> db.<coleccion>.aggregate([{$match: {condicion}},{$group:{_id: “$atributo”, atributo_agregado: {funcion_agregada}}}])

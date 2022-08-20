@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "Luis Granados",
+    "correo": "lg@gmail.com",
+    "password": "12345678",
+    "libros": {
+      "nombre": "El señor de los diamantes",
+      "autores": "Bob Fisher",
+      "fecha-limite": "2019-01-01"
+    },
+    "portadas-alternativas": {
+      "urls": ["http://save.com/portada_luis1.jpeg", "http://save.com/portada_luis2.jpeg"],
+      "fecha-publicacion": "2018-05-01",
+      "puntos": [10, 0]
+    }
+  },
+  {
+    "nombre": "María Granados",
+    "correo": "mg@gmail.com",
+    "password": "12345678",
+    "libros": {
+      "nombre": "Carpintería Fácil",
+      "autores": "Mónica Santos",
+      "fecha-limite": "2019-02-01"
+    },
+    "portadas-alternativas": {
+      "urls": ["http://save.com/portada_maria1.jpeg"],
+      "fecha-publicacion": "2018-06-10",
+      "puntos": [8]
+    }
+  }
+]

@@ -1,0 +1,7 @@
+SELECT largo*ancho*alto AS volumen FROM contenedores
+SELECT sqrt(largo*ancho*alto) AS volumen FROM contenedore
+SELECT sqrt(largo*ancho*alto)*pi() AS volumen FROM contenedores
+SELECT round(sqrt(largo*ancho*alto)*pi()) AS volumen FROM contenedores
+
+
+

@@ -1,0 +1,24 @@
+>use productividad;
+>db.usuarios.find().pretty();
+>db.usuarios.find		// double TAB, Resultado
+db.usuarios.find(               db.usuarios.findOneAndDelete(
+db.usuarios.findAndModify(      db.usuarios.findOneAndReplace(
+db.usuarios.findOne(            db.usuarios.findOneAndUpdate(
+// Erroneo... revisar
+//>db.usuarios.findOneAndUpdate({"62da67be67f3a909f74d5c4a"}, { nombre: "Luis Mateo", direccion: { calle: 5 } });
+>db.usuarios.find().sort({ nombre: 1 | 0 | -1 }).pretty(); //donde:
+-> 1: forma ascendente -> 0: no ordenar, -> -1: forma descendente.
+>db.usuarios.find().sort({ nombre: 1 | 0 | -1 }).limit(2).pretty(); //limitar
+>db.usuarios.find({}); === >db.usuarios.find():
+//>db.usuarios.find({}, { "property's name": 1 | 0 });
+-> 1: que se traiga ese campo -> 0: que no se traiga
+>db.usuarios.find({}, { nombre: 1, _id: 0 });
+>db.usuarios.find({}, { nombre: 0 }); // result:
+{ "_id" : ObjectId("62da67be67f3a909f74d5c4a"), "direccion" : { "calle" : "5" } }
+{ "_id" : ObjectId("62da67be67f3a909f74d5c4b"), "edad" : "20", "direccion" : { "calle" : "5" } }
+{ "_id" : ObjectId("62da67be67f3a909f74d5c4c"), "direccion" : { "calle" : "3" } }
+>db.usuarios.find({ nombre: "ana ruiz" }); // result null, porque es sensible a mayúsculas y mínusculas
+>db.usuarios.find({ nombre: "Ana Ruiz" });
+db.usuarios.find({ nombre: { $ne: "Ana Ruiz" } }); //$ne, es un modificador, se muestras lo que no son los del valor
+
+

@@ -1,0 +1,12 @@
+SELECT * FROM documentos WHERE publicado = true;
+
+---- habiendo creado la vista
+SELECT * FROM documentos_publicados;
+
+
+---- Materialized Views
+SELECT titulo FROM documentos_borrador;
+SELECT * FROM documentos_borrador;
+
+
+

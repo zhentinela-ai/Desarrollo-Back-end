@@ -1,0 +1,23 @@
+--
+CREATE TABLE `ejemplos`.`personajes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `primer_nombre` VARCHAR(255) NOT NULL,
+  `segundo_nombre` VARCHAR(255) NOT NULL,
+  `primer_apellido` VARCHAR(255) NOT NULL,
+  `segundo_apellido` VARCHAR(255) NOT NULL,
+  `descripcion` TEXT NOT NULL,
+  `apodo` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`));
+
+--
+INSERT INTO `ejemplos`.`personajes` (`primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `descripcion`, `apodo`) VALUES ('María', 'Rosa', 'Pilar', 'Guitrago', 'muchacha pobre, pero bella', 'maría del barrio');
+INSERT INTO `ejemplos`.`personajes` (`primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `descripcion`, `apodo`) VALUES ('Oscar', 'Arturo', 'Diaz', 'Daza', 'táxista con mucha suerte, pero también mucha humildad', 'el mejor rumbero');
+INSERT INTO `ejemplos`.`personajes` (`primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `descripcion`, `apodo`) VALUES ('Beatriz', 'Mercedez', 'Aguilar', 'Muñoz', 'Econimisca muy inteligente, pero poco agraciada', 'Betty la fea');
+
+--
+ALTER TABLE `ejemplos`.`personajes` 
+CHANGE COLUMN `descripcion` `descripcion` TEXT NULL ,
+CHANGE COLUMN `apodo` `apodo` VARCHAR(255) NULL ;
+
+
+

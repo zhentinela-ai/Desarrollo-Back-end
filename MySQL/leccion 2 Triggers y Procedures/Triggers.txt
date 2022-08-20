@@ -1,0 +1,22 @@
+DROP TRIGGER IF EXISTS `tienda`.`boletos_AFTER_INSERT`;
+
+DELIMITER $$
+USE `tienda`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `tienda`.`boletos_AFTER_INSERT` AFTER INSERT ON `boletos` FOR EACH ROW
+BEGIN
+	INSERT INTO bitagora_precios (boleto_id, precio, tipo) VALUES (NEW.id, NEW.precio, "VALOR INICIAL");
+END$$
+DELIMITER ;
+
+--
+DROP TRIGGER IF EXISTS `tienda`.`boletos_AFTER_UPDATE`;
+
+DELIMITER $$
+USE `tienda`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `tienda`.`boletos_AFTER_UPDATE` AFTER UPDATE ON `boletos` FOR EACH ROW
+BEGIN
+INSERT INTO bitagora_precios (boleto_id, precio, tipo) VALUES (NEW.id, NEW.precio, "ACTUALIZACIÓN");
+
+END$$
+DELIMITER ;
+

@@ -1,0 +1,33 @@
+DECLARE total real;
+BEGIN
+
+SELECT SUM(costo) INTO total FROM ventas;
+RETURN total;
+
+END
+-------
+
+CREATE FUNCTION public.reporte_ventas()
+    RETURNS real
+    LANGUAGE 'plpgsql'
+    
+AS $BODY$
+DECLARE total real;
+BEGIN
+
+SELECT SUM(costo) INTO total FROM ventas;
+RETURN total;
+
+END
+$BODY$;
+
+ALTER FUNCTION public.reporte_ventas()
+    OWNER TO postgres;
+
+
+SELECT reporte_ventas();
+
+
+
+
+

@@ -1,0 +1,14 @@
+BEGIN
+INSERT INTO cambios_de_nombres (id, descripcion, fecha) VALUES
+(1, CONCAT('cambio de nombre de: <', OLD.nombre, '> a <', NEW.nombre, '>'), NOW());
+
+RETURN NEW;
+
+END
+
+----
+CREATE TRIGGER cambiando_nombre
+    AFTER INSERT
+    ON public.cuidadanos
+    FOR EACH ROW
+    EXECUTE FUNCTION public.registrar_cambio_de_nombre();

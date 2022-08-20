@@ -1,0 +1,2 @@
+SELECT *, ROUND(pi()*radio*radio) AS area FROM platos;
+SELECT * FROM platos WHERE 2*pi()*radio < 10;

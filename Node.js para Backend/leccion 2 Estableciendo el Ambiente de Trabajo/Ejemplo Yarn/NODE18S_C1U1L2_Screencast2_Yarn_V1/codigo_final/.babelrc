@@ -1,0 +1,7 @@
+{ "presets": ["env"] }
+
+// yarn add babel-cli --dev
+// yarn add babel-preset-env --dev
+// yarn add babel-cli  babel-preset-env --dev
+
+// yarn add  num2fraction

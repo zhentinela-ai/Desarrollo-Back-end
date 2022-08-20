@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller</title>
+  </head>
+  <body>
+    <h1>Inventario</h1>
+    <hr />
+    <table>
+      <thead>
+        <tr>
+          <th><a href="/?orderBy=id">id</a></th>
+          <th><a href="/?orderBy=nombre">Nombre</a></th>
+          <th><a href="/?orderBy=cantidad">cantidad</a></th>
+          <th>
+            <a href="/?orderBy=precio">precio</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% var total = 0 %> <% var count = 0 %> <% for( let i = 0; i <
+        products.length; i++ ) { %>
+        <tr>
+          <% total += products[i].cantidad %> <% count ++ %>
+          <td><%= products[i].id %></td>
+          <td><%= products[i].nombre %></td>
+          <td><%= products[i].cantidad %></td>
+          <td><%= products[i].precio %> [<a href="/eliminar-producto?id=<%= products[i].id %>" onclick="return confirm('¿Esta seguro de querer eliminar el producto?')">x</a>] </td>
+        </tr>
+        <% } %>
+        <tr>
+          <td>Total</td>
+          <td><%= total %></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>cantidad de prodcutos: <%= count %></h3>
+
+    <hr />
+    <a href="/create-form">Crear producto</a>
+  </body>
+</html>

@@ -1,0 +1,271 @@
+<div id="container" class="container">
+  <div id="entidad-relacion">
+    <a href="/entidad-relacion">Entidad/Relación</a>
+  </div>
+  <%- partial('../partials/editar-evento', { eventos }) %>
+  <% for( let i = 0; i < eventos.length; i++ ) { %>
+    <section class="event">
+      <%- partial("../partials/header-evento", { evento: eventos[i], i }) %>
+
+      <% for( let j = 0; j < eventos[i].lugares.length; j++ ) { %> 
+        
+        <%- partial("../partials/body-evento", { lugares: eventos[i].lugares[j] }) %>
+      
+        <button id="create_function-<%= eventos[i].id %>-<%= eventos[i].lugares[j].id %>"
+          onclick="handleModalCreateFunction(this)" class="btn btn-secondary btn-sm function-buttons">
+
+          Crear función a (<%= eventos[i].nombre %> en <%= eventos[i].lugares[j].lugar.split("-")[0].toUpperCase().concat(" - ", eventos[i].lugares[j].lugar.split("-")[1]) %>)
+        </button>
+      <% } %>
+    </section>
+  <% } %>
+</div>
+
+<%- partial('../partials/crear-evento') %>
+<div class="create-event">
+  <button class="btn btn-primary" onclick="handleModalCreate(this)">Agregar Evento</button>
+</div>
+
+<%- partial('../partials/crear-funcion', { eventos }) %> 
+
+<script>
+  const welcome = document.getElementById("welcome");
+  welcome.innerHTML = `<p>Bienvenido</p>`;
+  welcome.style.display = 'block';
+  setTimeout(() => {
+    welcome.style.left = '-500px';
+  }, 2000)
+</script>
+
+<!-- Funcionalidad de la ventana modal y la eliminación de un evento -->
+<script>
+  const container = document.getElementById('container').scrollHeight;
+  const createEvent = document.querySelector('.create-event').scrollHeight;
+  document.getElementById('content-admin').style.height = `${80 + container + createEvent}px`;
+
+  const modal = document.getElementById("modal");
+  
+  let showModal = 0;
+  let eventModal = "";
+  const handleModal = (e) => {
+    if (showModal === 0) {
+      showModal = 1;
+      eventModal = "auto";
+    } else {
+      showModal = 0;
+      eventModal = "none";
+    }
+    modal.style.opacity = showModal;
+    modal.style.pointerEvents = eventModal;
+  };
+
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach((button) => {
+    if (button.id) {
+      button.addEventListener("click", () => {
+        if (!isNaN(Number(button.id))) {
+          const modalContainer = document.getElementById(
+            `modal-container-${button.id}`
+          );
+          var i = button.dataset.index;
+          modalContainer.style.top = `calc(-75% * ${i})`;
+          modalContainer.style.alignContent = "center";
+          if (!modalContainer.style.opacity) {
+            modalContainer.style.opacity = 1;
+            modalContainer.style.pointerEvents = "auto";
+          } else {
+            modalContainer.style.opacity = 1;
+            modalContainer.style.pointerEvents = "auto";
+          }
+        } else {
+          const action = button.id.split("-")[0].trim();
+          const id = button.id.split("-")[1].trim();
+          if (!isNaN(Number(id))) {
+            const modalContainer = document.getElementById(
+              `modal-container-${id}`
+            );
+            modalContainer.style.opacity = 0;
+            modalContainer.style.pointerEvents = "none";
+
+            if (action === "delete") {
+              if (window.confirm(`¿Está seguro de querer eliminar el evento: ${button.dataset.name}?`)) {
+                fetch("/admin/principal/eliminar-evento", {
+                  method: "POST",
+                  body: JSON.stringify({ eventId: id }),
+                });
+              }
+            }
+          }
+        }
+      });
+    }
+  });
+</script>
+
+<!-- Eventos para enviar los datos que serán actualizados -->
+<script>
+  buttons.forEach((button) => {
+    var id = "";
+    if (button.id.split("-")[1] !== "function") id = button.id.split("-")[1];
+    if (isNaN(id) && id !== undefined) {
+      var editForm = document.querySelector(`#edit-form-${id}`);
+      var $file = document.querySelector(`#file-${id}`);
+      var $name = document.querySelector(`#name-${id}`);
+      var $image = document.querySelector(`#image-${id}`);
+
+      const renderImage = (editFormData) => {
+        const file = editFormData.get("image");
+        const image = URL.createObjectURL(file);
+        $image.setAttribute("src", image);
+      };
+
+      $file.addEventListener("change", () => {
+        const editFormData = new FormData(editForm);
+        renderImage(editFormData);
+      });
+
+      const renderName = (editFormData) => {
+        const name = editFormData.get("name");
+        $name.textContent = name;
+      };
+
+      editForm.addEventListener("submit", (e) => {
+        // e.preventDefault();
+        const editFormData = new FormData(e.currentTarget);
+        renderName(editFormData);
+
+        editFormData.set("image", editFormData.get("image").name);
+        fetch("/admin/principal", {
+          method: "POST",
+          body: editFormData,
+        });
+      });
+    }
+  });
+</script>
+
+<!-- Funcionalidad de la ventana modal: para crear eventos -->
+<script>
+  const modalCreate = document.getElementById("modal-create");
+  const modalContainerCreate = document.getElementById("modal-container");
+
+  const handleModalCreate = (e) => {
+    if (showModal === 0) {
+      showModal = 1;
+      eventModal = "auto";
+    } else {
+      showModal = 0;
+      eventModal = "none";
+    }
+    modalCreate.style.opacity = showModal;
+    modalContainerCreate.style.opacity = showModal;
+    modalCreate.style.pointerEvents = eventModal;
+    modalContainerCreate.style.pointerEvents = eventModal;
+  };
+
+  const createForm = document.querySelector("#create-form");
+  var imageCreate = document.querySelector("#image");
+  var fileCreate = document.querySelector("#file");
+
+  const renderImage = (createFormData) => {
+    const file = createFormData.get("image");
+    const image = URL.createObjectURL(file);
+    imageCreate.setAttribute("src", image);
+  };
+
+  fileCreate.addEventListener("change", function ChangeFileCreate (e) {
+    imageCreate.style.display = "block";
+    var createFormData = new FormData(createForm);
+    console.log();
+    if (e.target.value)
+      renderImage(createFormData);
+  });
+
+  createForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    var createFormData = new FormData(createForm);
+    createFormData.set("image", createFormData.get("image").name);
+    fetch("/admin/principal/crear-evento", {
+      method: "POST",
+      body: createFormData,
+    });
+  });
+</script>
+
+<!-- Funcionalidad de la ventana modal: para crear funciones -->
+<script>
+  const modalCreateFunction = document.getElementById("modal-create-function");
+  const modalContainerFunction = document.getElementById(
+    "modal-container-function"
+  );
+
+  const handleModalCreateFunction = (e) => {
+    if (showModal === 0) {
+      showModal = 1;
+      eventModal = "auto";
+    } else {
+      showModal = 0;
+      eventModal = "none";
+    }
+    modalCreateFunction.style.opacity = showModal;
+    modalContainerFunction.style.opacity = showModal;
+    modalCreateFunction.style.pointerEvents = eventModal;
+    modalContainerFunction.style.pointerEvents = eventModal;
+
+    if (e.id) {
+      modalContainerFunction.childNodes.forEach((child) => {
+        if (child.id) {
+          var id_form = child.id
+            .split("-")[3]
+            .concat("-", child.id.split("-")[4]);
+          var id_button = e.id.split("-")[1].concat("-", e.id.split("-")[2]);
+          if (id_form === id_button) {
+            child.style.display = "block";
+          } else {
+            child.style.display = "none";
+          }
+        }
+      });
+    }
+  };
+
+  const functionButtons = document.querySelectorAll(".function-buttons");
+  const functionElements = document.querySelectorAll(".function");
+  
+  functionButtons.forEach((button) => {
+    button.eve;
+    var id_event = button.id.split("-")[1];
+    var id_place = button.id.split("-")[2];
+    var form = document.querySelector(
+      `#create-function-form-${id_event}-${id_place}`
+    );
+
+    form.addEventListener("submit", (e) => {
+      var formData = new FormData(form);
+      formData.set("eventId", id_event);
+      formData.set("placeId", id_place);
+
+      fetch("/admin/principal/crear-funcion", {
+        method: "POST",
+        body: formData,
+      });
+
+      // return { data: formData }
+    });
+  });
+
+  const handleDelete = (e) => {
+    var id = e.id.split("-")[2];
+    var hour = "";
+    if (e.dataset.hour === '1:00 pm') hour = "la " + e.dataset.hour
+    else hour = "las " + e.dataset.hour
+    if (window.confirm(`
+      ¿Desea eliminar la función de ${hour}?
+    `)) {
+      fetch("/admin/principal/eliminar-funcion", {
+        method: "POST",
+        body: JSON.stringify({ functionId: Number(id) }),
+      });
+    }
+  };
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller</title>
+  </head>
+  <body>
+    <h1>Inventario</h1>
+    <hr />
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>cantidad</th>
+          <th>precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% var total = 0 %> 
+        <% var count = 0 %> 
+        <% for( let i = 0; i < products.length; i++ ) { %>
+        <tr>
+          <% total += products[i].cantidad %>
+          <% count ++ %> 
+          <td><%= products[i].nombre %></td>
+          <td><%= products[i].cantidad %></td>
+          <td><%= products[i].precio %></td>
+        </tr>
+        <% } %>
+        <tr>
+          <td>Total</td>
+          <td><%= total %></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>cantidad de prodcutos: <%= count %></h3>
+
+    <hr>
+    <a href="/create-form">Crear producto</a>
+  </body>
+</html>

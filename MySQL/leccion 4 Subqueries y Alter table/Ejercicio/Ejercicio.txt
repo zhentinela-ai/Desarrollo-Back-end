@@ -1,0 +1,38 @@
+--
+CREATE TABLE `empresa`.`generos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`));
+
+--
+ALTER TABLE `empresa`.`empleados` 
+ADD COLUMN `id_genero` VARCHAR(45) NOT NULL AFTER `username`,
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`id`, `id_genero`);
+;
+
+--
+ALTER TABLE `empresa`.`empleados` 
+CHANGE COLUMN `genero_id` `genero_id` INT NOT NULL ,
+ADD INDEX `fk_genero_id_idx` (`genero_id` ASC) VISIBLE;
+;
+ALTER TABLE `empresa`.`empleados` 
+ADD CONSTRAINT `fk_genero_id`
+  FOREIGN KEY (`genero_id`)
+  REFERENCES `empresa`.`generos` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+--
+ALTER TABLE `empresa`.`empleados` 
+DROP COLUMN `genero_id`,
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`id`);
+;
+
+
+
+
+
+
+

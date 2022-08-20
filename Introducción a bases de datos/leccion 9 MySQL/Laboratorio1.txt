@@ -1,0 +1,16 @@
+mysql -u root -p -h localhost
+
+SHOW DATABASES;
+CREATE DATABASE tienda_videojuegos;
+USE tienda_videojuegos;
+SHOW DATABASES;
+CREATE TABLE videojuegos (id INT AUTO_INCREMENT, nombre_juego VARCHAR(255), puntos_maximos VARCHAR(255), niveles INT, PRIMARY KEY(id));
+INSERT INTO videojuegos VALUES(NULL, "Contra", "100", 6);
+INSERT INTO videojuegos VALUES(NULL, "Mario Car", "10", 10);
+INSERT INTO videojuegos VALUES(NULL, "Culebrita", "infinito", 6);
+SHOW TABLES;
+SELECT * FROM videojuegos; 
+UPDATE videojuegos SET nombre_juego = "Contra 2" WHERE id = 1;
+SELECT * FROM videojuegos; 
+DELETE FROM videojuegos WHERE id = 2;
+SELECT * FROM videojuegos; 

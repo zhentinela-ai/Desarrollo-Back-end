@@ -1,0 +1,24 @@
+>use censo;
+>db.createCollection("cuidadanos");
+>db.cuidadanos.insert({ nombre: "Luis", edad: 20, genero: "Masculino" });
+>db.cuidadanos.insert({ nombre: "Marcos", edad: 10, genero: "Masculino"  });
+>db.cuidadanos.insert({ nombre: "Ana", edad: 40, genero: "Femenino" });
+>db.cuidadanos.insert({ nombre: "Marta", edad: 5, genero: "Femenino" });
+>db.cuidadanos.insert({ nombre: "Sebastian", edad: 60, genero: "Masculino" });
+
+>db.cuidadanos.aggregate([ { $project: { nombre: 1, _id: 0 } } ]);
+{ "nombre" : "Luis" }
+{ "nombre" : "Marcos" }
+{ "nombre" : "Ana" }
+{ "nombre" : "Marta" }
+{ "nombre" : "Sebastian" }
+>db.cuidadanos.aggregate([ { $project: { nombre: 1, _id: 0, promedio: { $avg: "$edad" } } } ]);
+{ "nombre" : "Luis", "promedio" : 20 }
+{ "nombre" : "Marcos", "promedio" : 10 }
+{ "nombre" : "Ana", "promedio" : 40 }
+{ "nombre" : "Marta", "promedio" : 5 }
+{ "nombre" : "Sebastian", "promedio" : 60 }
+
+>db.cuidadanos.aggregate([ { $match: { edad: { $gt: 18 } } }, { $group: { _id: "$genero", promedio: { $avg: "$edad" } } } ]);
+{ "_id" : "Femenino", "promedio" : 40 }
+{ "_id" : "Masculino", "promedio" : 40 }

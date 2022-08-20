@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "62da4919194f48b24b65285b"
+  },
+  "nombre": "Tarea4",
+  "detalle": "dt"
+},{
+  "_id": {
+    "$oid": "62da4a90194f48b24b65285d"
+  },
+  "nombre": "Tarea6",
+  "detalle": "dt"
+},{
+  "_id": {
+    "$oid": "62da4d45194f48b24b65285e"
+  },
+  "nombre": "Tarea1",
+  "detalles": "dt",
+  "fecha_limite": {
+    "$date": {
+      "$numberLong": "1675659600000"
+    }
+  }
+}]

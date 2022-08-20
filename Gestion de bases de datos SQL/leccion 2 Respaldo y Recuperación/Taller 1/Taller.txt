@@ -1,0 +1,14 @@
+> describe products;
+> ALTER TABLE products ADD code INT AFTER name;
+> ALTER TABLE products ADD price FLOAT AFTER code;
+> describe products;
+
+> INSERT INTO products (id, name, code, price) VALUES (100, "keyboard", 1520, 50.00);
+> INSERT INTO products (id, name, code, price) VALUES (101, "keyboard", 1520, 50.00);
+> SELECT * FROM products;
+
+-- mysqldump -u root -p tasksdb > respaldo.sql
+-- mysqldump -u root -p tasksdb
+> create database tu_empresa;
+-- mysql -u root -p tu_empresa ~ respaldo.sql
+ 

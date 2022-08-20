@@ -1,0 +1,12 @@
+FAZT: >db.["collection's name"].insert({"document's name"});
+/*---------Respaldo-----------*/
+/*Para versiones anteriores a MongoDB 5*/
+>mongodump //respalda todas las DB a las cuales estamos conectados.
+>mongodump -d productividad
+
+//para la versión 5 no es necesario entrar a la shell de mongo, se hace desde CMD
+//-mongodump --collection (-c) "collection's name" --db (-d) "db's name"
+-mongodump -d productividad
+
+/*-------Recuperación---------*/
+-mongorestore //buscara la carpeta dump y de allí hará la recuperación.

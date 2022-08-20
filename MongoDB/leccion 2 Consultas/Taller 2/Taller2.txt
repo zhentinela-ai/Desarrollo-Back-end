@@ -1,0 +1,5 @@
+>use libreria;
+>db.createCollection("libros");
+>db.libros.insert({ titulo: "", autor: "", resumen: "" }); x3
+>db.libros.createIndex( { titulo: "text", autor: "text", resumen: "text" } );
+>db.libros.find({ $text: { $search: "" } });

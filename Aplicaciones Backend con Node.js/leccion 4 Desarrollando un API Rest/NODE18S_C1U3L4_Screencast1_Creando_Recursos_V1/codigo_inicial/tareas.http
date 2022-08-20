@@ -1,0 +1,8 @@
+@api = http://localhost:8080/api/tareas
+
+POST {{api}}
+Content-Type: application/json
+
+{
+  "descripcion": "Tarea 2 desde http VS"
+}

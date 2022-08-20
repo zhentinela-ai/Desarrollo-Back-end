@@ -1,0 +1,19 @@
+{
+  "name": "taller",
+  "version": "1.0.0",
+  "description": "\"Creando una aplicación Back End Node.js usando Express\"",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon miapp.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express"
+  ],
+  "author": "zhent",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}

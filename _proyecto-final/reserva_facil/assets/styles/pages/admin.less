@@ -1,0 +1,137 @@
+header {
+  padding-bottom: 30px;
+  background: transparent;
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: @color-border;
+    padding: 0 10px;
+    li {
+      height: 100%;
+      list-style: none;
+      h3 {
+        background: @color-border;
+        height: 50px;
+        color: @color-letters;
+        padding: 15px;
+      }
+      .out {
+        background: @color-border;
+        text-decoration: none;
+        font-size: 20px;
+        padding: 5px 13px;
+        border-radius: 0 13px;
+        &:hover {
+          .set-shadows();
+        }
+        input {
+          border: none;
+          background: transparent;
+          color: @principal;
+          font-size: 20px;
+          &:hover {
+            outline: none;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+.card {
+  margin: 5px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 10px;
+  color: @color-letters;
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  label {
+    font-size: 1.2em;
+  }
+}
+
+.card-body {
+  width: 350px;
+  padding: 40px;
+}
+
+.form-control {
+  width: 100%;
+  height: 35px;
+  padding: 5px;
+  font-size: 25px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.form-control:focus {
+  outline: none;
+}
+
+.btn {
+  padding: 8px;
+  width: 100%;
+  border: none;
+  font-size: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  color: @color-btn;
+  transition: .25s;
+}
+
+.btn:hover {
+  cursor: pointer;
+  border: none;
+  .set-shadows(0, 0, 0, 1)
+}
+
+.btn-sm {
+  padding: 5px 15px;
+  font-size: 15px;
+  width: auto;
+  border-radius: 5px;
+}
+
+.btn-success {
+  background: @btn-success;
+  color: @color-letters;
+}
+
+.btn-success:hover {
+  background: @btn-success-hover;
+  color: @color;
+}
+
+.btn-primary {
+  background: @btn-primary;
+  &:hover {
+    background: @btn-primary-hover;
+  }
+}
+.btn-danger {
+  background: @btn-danger;
+  margin: 0px;
+  &:hover {
+    border: none;
+    background: @btn-danger-hover;
+  }
+}
+
+.btn-secondary {
+  background: @btn-secondary;
+  &:hover {
+    background: @btn-secondary-hover;
+  }
+}

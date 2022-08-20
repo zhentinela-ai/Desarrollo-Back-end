@@ -1,0 +1,51 @@
+ /* plpgsql */
+BEGIN
+
+--UPDATE productos
+--SET descuento = precio * 0.1, 
+--    precio_final = precio - descuento;
+
+--INSERT INTO productos (nombre, codigo, precio, descuento, precio_final)
+--VALUES (OLD, OLD, OLD, descuento, precio_final);
+
+NEW.descuento = NEW.precio*0.1;
+NEW.precio_final = NEW.precio*0.9;
+RETURN NEW;
+
+RETURN NEW;
+
+END
+
+/* SQL */
+CREATE OR REPLACE FUNCTION public.actualizar_descuento()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    VOLATILE
+    COST 100
+AS $BODY$
+BEGIN
+
+--UPDATE productos
+--SET descuento = precio * 0.1, 
+--    precio_final = precio - descuento;
+
+--INSERT INTO productos (nombre, codigo, precio, descuento, precio_final)
+--VALUES (OLD, OLD, OLD, descuento, precio_final);
+
+NEW.descuento = NEW.precio*0.1;
+NEW.precio_final = NEW.precio*0.9;
+RETURN NEW;
+
+RETURN NEW;
+
+END
+$BODY$;
+
+SELECT aplicar_descuento(80);
+SELECT * FROM public.productos
+ORDER BY id ASC 
+
+
+
+
+

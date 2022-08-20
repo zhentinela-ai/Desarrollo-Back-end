@@ -1,0 +1,34 @@
+<h1>Solicitar Servicio</h1>
+
+<form action="/procesar_solicitar_servicio" method="POST">
+  <p>
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" required="true">
+  </p>
+
+  <p>
+    <label for="apellido">Apellido</label>
+    <input type="text" name="apellido" required="true">
+  </p>
+
+  <p>
+    <label for="descripcion">Servicio</label>
+    <textarea name="descripcion" required="true"></textarea>
+  </p>
+
+  <p>
+    <label for="email">Email</label>
+    <input type="email" name="email" required="true">
+  </p>
+
+  <p>
+    <label for="telefono">Teléfono</label>
+    <input type="text" name="telefono" required="true">
+  </p>
+
+  <p>
+    <input type="submit" value="continuar">
+  </p>
+
+
+</form>

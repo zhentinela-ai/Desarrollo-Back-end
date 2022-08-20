@@ -1,0 +1,15 @@
+# Comandos MySQL: Creando una base de datos:
+
+- mysql -u root -p -h localhost
+- SHOW DATABASES;
+- CREATE DATABASE "database_name";
+- STATUS;
+- USE "database_name";
+- exit
+
+# Comandos MySQL: Creando una tabla.
+- CREATE TABLE "database_name" (id INT AUTO_INCREMENT, modelo VARCHAR(255), color VARCHAR(255), PRIMARY KEY(id));
+- SHOW TABLES;
+- DESCRIBE "table_name";
+- INSERT INTO "table_name" VALUES(NULL, "ESCARABAJO", "VERDE");
+- SELECT * FROM "table_name"; 

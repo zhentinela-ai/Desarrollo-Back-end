@@ -1,0 +1,54 @@
+mongo
+>use productividad;
+/-------------------------------/
+>show collections;
+>db.createCollection("categorias");
+>db.createCollection("tareas");
+/-------------------------------/
+>db.categorias.insert({ nombre: "Personales" });
+>db.categorias.insert({ nombre: "Trabajo" });
+>db.categorias.find();
+/-------------------------------/
+>db.tareas.insert({ nombre: "Tarea1", detalle: "dt", fecha_limite: new Timestamp() });
+>db.tareas.insert({ nombre: "Tarea2", detalle: "dt2", fecha_limite: ISODate("2023-02-06T05:00:00Z") });
+// Ejemplos de uso
+//>db.timetest.insertOne( { ts: new Timestamp() } );
+//>db.timetest.insertOne( { "City":"Pune", "Insert Date":ISODate() } );
+//>db.timetest.insertOne( { "Message" : "This is Sample", "Insert Date" : ISODate("2020-03-02T01:11:18.965Z") } );
+//>db.timetest.insertOne({"Message" : "This is another example of timestamp","Insert Date" : new Date("2020-01-21") });
+
+// Optención
+//>new Timestamp();
+//>ObjectId("5ec2f8f009f2b0337b4197fe").getTimestamp();
+>db.tareas.find();
+>db.tareas.find().pretty();
+>db.tareas.insert		//double TAB, resultando:
+db.tareas.insert(	/*Generico: puede insertar uno o más documentos, tmbiénde volviendolos*/
+db.tareas.insertMany(	/*Iserta varios documentos y los devulve*/
+db.tareas.insertOne(	/*Inserta un documento y lo devuelve*/
+//>db.tareas.insert([ {}, {}, {}... ]);
+>db.tareas.insert([ { nombre: "Tarea3" }, { nombre: "Tarea4", detalle: "dt" } ]); //resultado
+	"writeErrors" : [ ], 
+ 	"writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+>db.tareas.find();
+// Buscando con un comando patron
+>db.tareas.find( { detalle: "dt" });
+// Más especifíco
+>db.tareas.find( { detalle: "dt" }, { nombre: "Tarea5" } );
+// Con condicionales	    condiciones: específicadas por un documento
+//>db.tareas.find( { $or: [ {}, {}, {}... ] } );
+>db.tareas.find( { $or: [ { nombre: "Tarea2" }, { nombre: "Tarea3" } ] } );
+// Aquellos que no tienen una columna especifíca
+>db.tareas.find( { fecha_limite: null } );
+// Eliminar documentos
+>db.tareas.deleteMany({ detalle: null }) // resultado
+{ "acknowledged" : true, "deletedCount" : 4 }
+/**********************************************/
+>ObjectId("62da4d45194f48b24b65285e").getTimestamp();
+

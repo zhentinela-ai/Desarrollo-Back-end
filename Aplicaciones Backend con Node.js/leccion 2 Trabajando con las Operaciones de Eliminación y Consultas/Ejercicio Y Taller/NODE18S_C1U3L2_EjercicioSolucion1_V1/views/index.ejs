@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ejemplo</title>
+  <link rel="stylesheet" href="css/milligram.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Productos</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th><a href="/?orden=id">id</a></th>
+          <th><a href="/?orden=nombre">precio</a></th>
+          <th><a href="/?orden=cantidad">cantidad</a></th>
+          <th><a href="/?orden=precio">precio</a></th>
+          <th>acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i=0; i<productos.length; i++) { %>
+        <tr>
+          <td>
+            <%=productos[i].id%>
+          </td>
+          <td>
+            <%=productos[i].nombre%>
+          </td>
+          <td>
+            <%=productos[i].cantidad%>
+          </td>
+          <td>
+            <%=productos[i].precio%>
+          </td>
+          <td>
+            <a href="/eliminar?id=<%=productos[i].id%>" onclick="return confirm('¿Está seguro de eliminar el producto: <%=productos[i].nombre%>?')">Eliminar</a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+
+    <h3>Cantidad:
+      <%=productos.length%>
+    </h3>
+
+    <hr>
+    <h2>Agregar Producto</h2>
+    <form action="agregar" method="post">
+      <fieldset>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" required="true">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" name="cantidad" required="true">
+        <label for="precio">Precio</label>
+        <input type="number" name="precio" required="true">
+        <input type="submit" value="Agregar">
+      </fieldset>
+    </form>
+
+  </div>
+
+</body>
+
+</html>

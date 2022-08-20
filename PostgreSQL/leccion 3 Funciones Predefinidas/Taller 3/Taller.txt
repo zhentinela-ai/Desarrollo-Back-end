@@ -1,0 +1,3 @@
+SELECT * FROM eventos;
+SELECT fecha_fin - fecha_inicio FROM eventos;
+SELECT * FROM eventos WHERE extract (month from fecha_inicio) = 1;

@@ -1,0 +1,28 @@
+// Operaciones
+>use enoteca;
+>db.createCollection("vinos");
+>db.vinos.insert({nombre:"V1", cosecha:2016, tipo:"Cabernet", precio:10, origin:"Argentina"}); 
+>db.vinos.insert({nombre:"V2", cosecha:2015, tipo:"Malbec", precio:8, origin:"Chile"});
+>db.vinos.insert({nombre:"V3", cosecha:2017, precio:7, origin:"Chile"});
+>db.vinos.insert({nombre:"V4", cosecha:2018, precio:8, origin:"Chile"});
+>db.vinos.insert({nombre:"V5", cosecha:2017, tipo:"Pinot", precio:9, origin:"Argentina"});
+
+// Reportes
+>db.vinos.find({}, { origin: 1, _id: 0 });
+{ "origin" : "Argentina" }
+{ "origin" : "Chile" }
+{ "origin" : "Chile" }
+{ "origin" : "Chile" }
+{ "origin" : "Argentina" }
+>db.vinos.find({}, { cosecha: 1, _id: 0 });
+{ "cosecha" : 2016 }
+{ "cosecha" : 2015 }
+{ "cosecha" : 2017 }
+{ "cosecha" : 2018 }
+{ "cosecha" : 2017 }
+>db.vinos.aggregate([{ $project: { nombre: 1, _id: 0, impuesto: { $multiply: [ 0.07, "$price" ] } } }])
+{ "nombre" : "V1", "impuesto" : null }
+{ "nombre" : "V2", "impuesto" : null }
+{ "nombre" : "V3", "impuesto" : null }
+{ "nombre" : "V4", "impuesto" : null }
+{ "nombre" : "V5", "impuesto" : null } // algo ocurre

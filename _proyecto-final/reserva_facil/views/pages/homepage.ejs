@@ -1,0 +1,123 @@
+<div id="entidad-relacion">
+  <a href="/entidad-relacion">Entidad/Relación</a>
+</div>
+
+<% eventos.forEach(evento => { %>
+  <div class="view-event">
+    <h1 class="name"><%= evento.nombre %></h1>
+    <img src="<%= evento.imagen %>" alt="<%= evento.nombre %>" />
+    <div class="places">
+      <% evento.lugares.forEach(lugar => { %> <% if (lugar.funciones.length > 0) {
+        %>
+          <div class="place">
+            <p><%= lugar.lugar %></p>
+            <div class="functions">
+              <% lugar.funciones.forEach(funcion => { %>
+                <% let capacidad = lugar.capacidad - funcion.reservas.length  %>
+                <%-partial('../partials/crear-reservas', {
+                  functionId: funcion.id,
+                  nombre: evento.nombre,
+                  hora: funcion.hora,
+                  cantidad: capacidad
+                })%>
+                <% if (capacidad) { %>
+                  <button
+                    type="submit"
+                    id="<%= funcion.id %>"
+                    class="btn btn-danger btn-sm"
+                    onclick="handleModalCreateReservations(this);"
+                  >
+                    <% if (capacidad > 1) { %>
+                      <%= funcion.hora %> (<%= capacidad %> espacios)
+                    <% } else { %>
+                      <%= funcion.hora %> (<%= capacidad %> espacio)  
+                    <% } %>
+                  </button>
+                <% } else { %>
+                  <button
+                    style="padding: 5px 15px;
+                          font-size: 15px;
+                          width: auto;
+                          border-radius: 5px;
+                          background: #444;
+                          color: white;
+                          border: none;"
+                  >
+                    <%= funcion.hora %> (Agotada)
+                  </button>
+                <% } %>
+              <% }) %>
+            </div>
+          </div>
+        <% } %>
+      <% }) %>
+    </div>
+  </div>
+<% }) %>
+
+<script>
+  const reversationSuccess = document.getElementById("reversation-success");
+    reversationSuccess.innerHTML = `<p>La reserva ha sido completada</p>`;
+    reversationSuccess.style.display = "block";
+
+    setTimeout(() => {
+      reversationSuccess.style.left = "-500px";
+    }, 2000);
+</script>
+
+<script>
+  const contentViewer = document.getElementById("content-viewer");
+  const headerViewer = document.querySelector(".header-viewer");
+  const bodyViewer = document.querySelector(".body-viewer");
+  contentViewer.style.height = `${
+    headerViewer.scrollHeight + 1.03 * bodyViewer.scrollHeight
+  }px`;
+</script>
+
+<script>
+  let showModal = 0;
+  let eventModal = "";
+  const handleModalCreateReservations = (e) => {
+    if (showModal === 0) {
+      showModal = 1;
+      eventModal = "auto";
+    } else {
+      showModal = 0;
+      eventModal = "none";
+    }
+
+    let id = e.id;
+    if (!Number(id)) {
+      id = id.split("-")[1];
+    }
+    const modalCreateReservations = document.getElementById(
+      `modal-create-reservas-${id}`
+    );
+    const modalContainerReservations = document.getElementById(
+      `modal-container-reservas-${id}`
+    );
+    modalCreateReservations.style.opacity = showModal;
+    modalContainerReservations.style.opacity = showModal;
+    modalCreateReservations.style.pointerEvents = eventModal;
+    modalContainerReservations.style.pointerEvents = eventModal;
+  };
+
+  const formReversetions = document.querySelectorAll(".form-reversetions");
+  formReversetions.forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      // e.preventDefault();
+      var { functionid, currentCapacity } = form.dataset;
+      const formData = new FormData(e.currentTarget);
+      formData.set("functionId", Number(functionid));
+      formData.set("currentCapacity", Number(currentCapacity));
+      // console.log(formData.get("quantity"));
+      // console.log(formData.get("functionId"));
+      // console.log(formData.get("currentCapacity"));
+
+      fetch("/reservas", {
+        method: "POST",
+        body: formData,
+      });
+    });
+  });
+</script>

@@ -1,0 +1,155 @@
+.modal {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 10px;
+  transition: 0.35s;
+  .modals-content();
+}
+
+.container {
+  width: 85vw;
+  min-height: 100vh;
+  margin: 5px auto 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: @color-letters;
+  background: transparent;
+  .event {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .event-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    h1 {
+      display: flex;
+      align-items: center;
+      font-size: 2em;
+      font-weight: 500;
+    }
+
+    .edit-delete {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      a {
+        text-decoration: none;
+      }
+      span {
+        width: 8px;
+        height: 40px;
+        background: @color;
+      }
+    }
+  }
+
+  .event-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+
+    .location-capacity {
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 5px;
+      h2 {
+        font-size: 1.5em;
+        font-weight: 500;
+      }
+    }
+
+    .fuction {
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .title-delete {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin: 20px auto;
+
+      button {
+        margin: 0px;
+        border: 1.8px solid @color;
+        &:hover {
+          border: 1.8px solid rgba(0, 0, 0, 0);
+          .set-shadows(200, 110, 230, 0.5);
+        }
+      }
+    }
+
+    .reserves {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+      .table {
+        margin-bottom: 10px;
+        border-collapse: collapse;
+        th,
+        td {
+          border: 1.5px solid @principal;
+          border-left: none;
+          border-right: none;
+          padding: 8px;
+          border-radius: 5px;
+        }
+        .head-row {
+          th {
+            background: @color;
+            font-size: larger;
+            font-weight: 800;
+          }
+        }
+
+        .body-row {
+          td {
+            background: linear-gradient(90deg, @principal, @color-btn);
+            transition: 0.3s;
+            &:hover {
+              background: linear-gradient(180deg, @principal, @color-btn);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+div[class*="modal-create-"] {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.35s;
+  .modals-content();
+}
+
+.create-event {
+  background: transparent;
+  text-align: center;
+  button {
+    width: auto;
+    padding: 8px 20px;
+  }
+}

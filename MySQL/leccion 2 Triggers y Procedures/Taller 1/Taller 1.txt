@@ -1,0 +1,28 @@
+--
+CREATE TABLE `atraccion_turistica`.`visitantes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(255) NOT NULL,
+  `extrangero` TINYINT NOT NULL,
+  PRIMARY KEY (`id`));
+
+--
+CREATE TABLE `atraccion_turistica`.`resumen` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `total_locales` INT NOT NULL,
+  `total_extrangeros` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+--
+DROP TRIGGER IF EXISTS `atraccion_turistica`.`visitantes_AFTER_INSERT`;
+
+DELIMITER $$
+USE `atraccion_turistica`$$
+CREATE DEFINER=`root`@`localhost` TRIGGER `visitantes_AFTER_INSERT` AFTER INSERT ON `visitantes` FOR EACH ROW BEGIN
+
+    INSERT INTO resumen (total_locales, total_extrangeros) VALUES (
+		12,
+        10
+    );
+END$$
+DELIMITER ;
+

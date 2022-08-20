@@ -1,0 +1,34 @@
+1. Verifica que tengas la base de datos y la colección creada. 
+>use taller_de_arte;
+>db.createCollection("obras");
+>db.obras.insert({ nombre: "pintura del mar", precio: 20, autor: "Luis" });
+>db.obras.insert({ nombre: "escultura", precio: 30, autor: "Luis" });
+>db.obras.insert({ nombre: "arte abstracto", precio: 40, autor: "Marcos" });
+>db.obras.insert({ nombre: "mural", precio: 40, autor: "Marcos" });
+>db.obras.insert({ nombre: "vitral", precio: 60, autor: "Marcos" });
+
+2. Haz un find() de la colección y observa 5 documentos. 
+>db.obras.find();
+{ "_id" : ObjectId("62df76a423994ab367dfcf00"), "nombre" : "pintura del mar", "precio" : 20, "autor" : "Luis" }
+{ "_id" : ObjectId("62df76cc23994ab367dfcf01"), "nombre" : "escultura", "precio" : 30, "autor" : "Luis" }
+{ "_id" : ObjectId("62df76e823994ab367dfcf02"), "nombre" : "arte abstracto", "precio" : 40, "autor" : "Marcos" }
+{ "_id" : ObjectId("62df76fd23994ab367dfcf03"), "nombre" : "mural", "precio" : 40, "autor" : "Marcos" }
+{ "_id" : ObjectId("62df770e23994ab367dfcf04"), "nombre" : "vitral", "precio" : 60, "autor" : "Marcos" }
+
+3. Observa 2 precios promedio distintos Marcos con 46.6 y Luis con 25.
+>db.obras.aggregate([ { $group: { _id: "$nombre", promedio: { $avg: "$precio" } } } ]);
+{ "_id" : "mural", "promedio" : 40 }
+{ "_id" : "escultura", "promedio" : 30 }
+{ "_id" : "vitral", "promedio" : 60 }
+{ "_id" : "pintura del mar", "promedio" : 20 }
+{ "_id" : "arte abstracto", "promedio" : 40 }
+>db.obras.aggregate([ { $group: { _id: "$autor", promedio: { $avg: "$precio" } } } ]);
+{ "_id" : "Luis", "promedio" : 25 }
+{ "_id" : "Marcos", "promedio" : 46.666666666666664 }
+
+4. Observa 2 precios máximo distintos Marcos con 60 y Luis con 30. 
+>db.obras.aggregate([ { $group: { _id: "$autor", promedio: { $max: "$precio" } } } ]);
+{ "_id" : "Luis", "promedio" : 30 }
+{ "_id" : "Marcos", "promedio" : 60 }
+
+

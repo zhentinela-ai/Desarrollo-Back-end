@@ -1,0 +1,45 @@
+<div id="modal-create-reservas-<%= functionId %>" class="modal-create-reservas">
+  <div id="modal-container-reservas-<%= functionId %>" class="modal-container">
+    <div class="modal-header">
+      <h3>Seleciona la cantidad de entradas</h3>
+      <button
+        id="x-<%= functionId %>"
+        class="btn btn-sm"
+        onclick="handleModalCreateReservations(this);"
+      >
+        x
+      </button>
+    </div>
+    <hr />
+    <form
+      action="/reservas"
+      class="form-reversetions"
+      data-functionId="<%= functionId %>"
+      data-currentCapacity="<%= cantidad %>"
+    >
+      <div class="modal-body">
+        <p>Evento: <%= nombre %></p>
+        <p>Hora: <%= hora %></p>
+        <input value="<%= functionId %>" type="hidden" name="functionId" />
+        <input value="<%= cantidad %>" type="hidden" name="currentCapacity" />
+        <select class="quantity" name="quantity" id="quantity" required>
+          <% for( let i = 1; i <= cantidad; i++ ) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+      </div>
+      <hr />
+      <div class="modal-footer">
+        <button
+          id="c-<%= functionId %>"
+          type="reset"
+          class="btn btn-danger btn-sm"
+          onclick="handleModalCreateReservations(this);"
+        >
+          Cerrar
+        </button>
+        <button type="submit" class="btn btn-success btn-sm">Continuar</button>
+      </div>
+    </form>
+  </div>
+</div>

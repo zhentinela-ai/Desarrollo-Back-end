@@ -1,0 +1,12 @@
+UPDATE mensage
+SET mensaje = TRIM(mensaje);
+
+/* UPDATE mensage
+SET mensaje = 'que tal'
+WHERE mensaje LIKE '%k tal%'; */
+
+SELECT * FROM mensage;
+
+SELECT id, LOWER(envia) AS envia, LOWER(recibe) AS recibe, mensaje FROM mensage;
+
+SELECT LENGTH(mensaje) FROM mensage;

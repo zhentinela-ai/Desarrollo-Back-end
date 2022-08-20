@@ -1,0 +1,13 @@
+--mysqldump
+--mysqldump -u root -p tasksdb
+--mysqldump -u root -p tasksdb > respaldo.sql
+> create database mi_empresa;
+
+el menor y mayor representa la dirección de la acción.
+
+--mysql -u root -p mi_empresa < respaldo.sql
+     |                              ~
+     | The '<' operator is reserved for future use.
+--mysql -u root -p mi_empresa ~ respaldo.sql
+--mysql -u root -p mi_empresa
+>use empresa;

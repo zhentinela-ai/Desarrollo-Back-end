@@ -1,0 +1,17 @@
+>use productividad;
+>db.usuarios.find();
+>db.usuarios.find({ nombre: "Ruiz" }); // result null, porque no es exacto, por ende se usaran expresiones regulares.
+>db.usuarios.find({ nombre: { $regex: /Ruiz/ } }); // result two documents
+>db.usuarios.find({ nombre: { $regex: /Ruiz/ } }); // result null, sensible a mayúsuclas
+>db.usuarios.find({ nombre: { $regex: /Ruiz/i } }); // no será sensible a mayúsculas
+// Crear un índice, esta basado en idiomas e ignora los artículos y las preposiciones, porque no son relevantes
+>db.usuario.createIndex({ nombre: "text" }); //crea un índice de tipo 'text' para el campo o parámetro "nombre"
+>db.usuario.
+// Enter... result:
+... // escribir en varias líneas...
+>db.usuarios.find({ $text: { $search: "ruiz" } })
+>db.usuario.createIndex({ edad: 1 });
+b.usuario.createIndex({ nombre: 1 }, { unique: true }); // índices de regulares, donde uno es activar nombre, 
+							// el segundo parámetro son las opciones
+// índices de textos, regulares; para velocidad y unicidad.
+

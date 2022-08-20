@@ -1,0 +1,13 @@
+- Crea una base de datos llamada tienda_videojuegos: use tienda_videojuegos;
+- Lista las bases de datos disponibles y verifica que tengas la tuya: show databases;
+- Cámbiate a esa base de datos: use tienda_videojuegos;
+- Consulta la colección videojuegos: {
+  db.createCollection("videojuegos");
+  db.getCollectionNames();  
+}
+-Inserta 3 documentos en esa tabla con los campos que se te pidieron en el enunciado: {
+  db.videojuegos.insert({ _id: 1, name: "Contra", punto_maximos: "100", niveles: 10 });
+  db.videojuegos.insert({ name: "Mario Car", punto_maximos: "20", niveles: 20 });
+  db.videojuegos.insert({ name: "Culebrita", punto_maximos: "infinito", niveles: 15 });
+}
+-Consulta la tabla videojuegos: db.videojuegos.find().pretty();

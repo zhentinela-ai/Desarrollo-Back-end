@@ -1,0 +1,21 @@
+>use ciencia;
+>db.createCollection("experimentos");
+>db.experimentos.insert({ descripcion: "E1", medida_1: -1, medida_2: 5 });
+>db.experimentos.insert({ descripcion: "E1", medida_1: 4, medida_2: 5 });
+>db.experimentos.insert({ descripcion: "E1", medida_1: 7, medida_2: 4 });
+>db.experimentos.find();
+
+>db.experimentos.count(); // contar los documentos
+[ -1, 4, 7 ]
+>db.experimentos.distinct("medida_1"); // documentos distintos
+[ 4, 5 ]
+
+>db.experimentos.aggregate([ { $project: { descripcion: 1, _id: 0 } } ]);
+>db.experimentos.aggregate([ { $project: { descripcion: 1, _id: 0, sum: { $add: ["$medida_1", "$medida_2"] } } } ]); // agregar un atributo bajo demanda
+{ "descripcion" : "E1", "sum" : 4 }
+{ "descripcion" : "E2", "sum" : 9 }
+{ "descripcion" : "E2", "sum" : 11 }
+
+
+
+

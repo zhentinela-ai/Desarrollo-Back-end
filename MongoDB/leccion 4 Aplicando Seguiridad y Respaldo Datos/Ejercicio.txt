@@ -1,0 +1,11 @@
+-mongo
+>use activos;
+>db.hardware.find();
+>db.getUsers();
+>db.createUser({ user: "visitante", pwd: "123123", roles: [ "read" ] });
+>db.createUser({ user: "manager", pwd: "123321", roles: [ "read", "write" ] });
+-mongo -u manager -p 123321 activos
+>db.hardware.insert({ nombre: "pc", marca: "hxp" });
+-mongo -u visitante -p 123123 activos
+>db.harware.insert({ nombre: "pc", marca: "lenovi" });
+>error

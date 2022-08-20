@@ -1,0 +1,53 @@
+Código DBDiagram.io
+-----------------------------------------------------------------------
+Table actores {
+  id int [pk]
+  nombre varchar [not null]
+  fecha_nacimiento date
+  
+  Indexes {
+    (fecha_nacimiento) [name: "edad"]
+    id [unique]
+  }
+}
+
+Table peliculas {
+  id int [pk]
+  nombre varchar [not null]
+  duracion float [not null]
+  fecha_estreno date [not null]
+  nombre_director varchar [not null]
+  id_genero int [pk]
+  
+  Indexes {
+    (id_genero) [name:"clave foranea"]
+    id [unique]
+    (nombre_director, fecha_estreno, duracion) [name: "buscar"]
+    (nombre_director, fecha_estreno) [name: "buscar director y estreno"]
+    (nombre_director, duracion) [name: "buscar director y duracion"]
+    (fecha_estreno, duracion) [name: "buscar estreno y duracion"]
+  }
+}
+
+Table genero {
+  id int [pk]
+  genero varchar [unique]
+  imagen varchar [not null]
+}
+
+ref: genero.id > peliculas.id_genero
+
+Table actua {
+  id_actor int [pk]
+  id_pelicula int [pk]
+  personaje varchar
+}
+
+ref: actua.id_actor - actores.id
+ref: actua.id_pelicula  - peliculas.id
+-----------------------------------------------------------------------
+Link:
+https://dbdiagram.io/d/62da32b20d66c7465529ff57
+
+HTML:
+<iframe width="560" height="315" src='https://dbdiagram.io/embed/62da32b20d66c7465529ff57'> </iframe>

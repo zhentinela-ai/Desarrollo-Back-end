@@ -1,0 +1,12 @@
+@api = http://localhost:8080/api/tareas/6
+
+PUT {{api}}
+Content-Type: application/json
+
+{
+  "descripcion": "Correr"
+}
+
+###
+DELETE {{api}}
+Content-Type: application/json

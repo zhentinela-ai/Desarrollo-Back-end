@@ -1,0 +1,53 @@
+<form
+  action="/login"
+  method="POST"
+  onsubmit="return validateForm()"
+  class="card card-body"
+  name="formLogin"
+>
+  <h1>Inicio de sesión</h1>
+  <label for="username">Nombre de usuario (login)</label>
+  <input
+    class="form-control"
+    placeholder="Username"
+    type="text"
+    name="username"
+    required
+    autofocus
+  />
+  <span id="username_error"></span>
+  <label for="password">Contraseña</label>
+  <input
+    class="form-control"
+    placeholder="Password"
+    type="password"
+    name="password"
+    required
+  />
+  <span id="password_error"></span>
+  <button type="submit" class="btn btn-success">Continuar</button>
+</form>
+
+<script>
+  const form = document.querySelector("form");
+  const usernameError = document.getElementById("username_error");
+  const passwordError = document.getElementById("password_error");
+  const validateForm = () => {
+    console.log(form[0].value.length);
+    if (form[0].value.length <= 4) {
+      usernameError.innerText =
+        "Error: El usuario debe tener una longitud mínima de 5 carácteres.";
+      usernameError.style.color = "#dd8056";
+      return false;
+    }
+    if (form[1].value.length <= 5) {
+      passwordError.innerHTML =
+        "Error: La contraseña debe tener una logitud mínima de 6 carácteres.";
+      passwordError.style.color = "#dd8056";
+      return false;
+    }
+    return true;
+  };
+
+  form.style.display = "none";
+</script>

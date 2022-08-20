@@ -1,0 +1,42 @@
+Table control_de_asistencia {
+  nombre varchar
+  apellido varchar
+  presentacion varchar
+  nombre_presentador varchar
+  apellido_presentador varchar
+}
+
+//--------------------------------
+
+// Segunda forma
+Table usuarios {
+  usuario_id int [pk]
+  nombre varchar
+  apellido varchar
+}
+
+Table usuario_presentacion {
+  usuario_id int [pk]
+  presentacion varchar
+  nombre_presentador varchar
+  apellido_presentador varchar
+}
+
+ref: usuarios.usuario_id > usuario_presentacion.usuario_id
+
+// Tercera forma
+
+Table presentaciones {
+  presentacion_id int [pk]
+  titulo varchar
+  nombre_presentador varchar
+  apellido_presentador varchar
+}
+
+Table usuarios_presentaciones {
+  usuario_id int [pk]
+  presentacion_id int [pk]
+}
+
+ref: usuarios.usuario_id - usuarios_presentaciones.usuario_id
+ref: usuarios_presentaciones.presentacion_id - presentaciones.presentacion_id

@@ -1,0 +1,21 @@
+>CREATE USER "user's name" IDENTIFIED BY "'user's password'"
+>GRANT ALL PRIVILEGES -- todos los privilegios.
+>GRANT SELECT ON *.* -- cualquier database y cualquier table
+>GRANT SELECT ON "database's name"."table's name" TO "'user's name'@'%'" 
+-- % da permiso a conectarse desde todas las IP de máquina, 
+-- pero se puede especificar la IP
+>FLUSH PRIVILEGES;
+
+->mysql -u analista -p tasksdb
+>SELECT * FROM tasks;
+>UPDATE tasks SET title = "I have to dinner tonight" WHERE id = 1;
+
+
+
+
+
+
+
+
+
+

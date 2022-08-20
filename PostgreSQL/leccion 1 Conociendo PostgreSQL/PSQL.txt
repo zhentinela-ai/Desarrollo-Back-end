@@ -1,0 +1,16 @@
+=# \l -> lista las bases de datos
+=# CREATE DATABASE practicando;
+=# \c practicando -> conectarse a una base datos
+=# \dt -> listar las tablas
+=# CREATE TABLE usuarios(
+			id SERIAL, -> indica la PK y el autoincremento
+			nombre VARCHAR NOT NULL); -> Si no se cierra el parentesis se puede escribir en más de una línea.
+=# \d+ usuarios -> describe de una tabla
+=# INSERT INTO usuarios (nombre) VALUES ("luis");
+ERROR:  no existe la columna «luis» -> la doble comilla no se reconoce
+LÍNEA 1: INSERT INTO usuarios (nombre) VALUES ("luis");
+=# INSERT INTO usuarios (nombre) VALUES ('luis');
+INSERT 0 1
+=# SELECT * FROM usuarios;
+=# \q -> salir de comando de pg
+

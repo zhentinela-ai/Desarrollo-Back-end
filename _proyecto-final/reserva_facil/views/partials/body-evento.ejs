@@ -1,0 +1,17 @@
+<div class="event-body">
+  <div class="location-capacity">
+    <h2 style="text-transform: uppercase;"><%= lugares.lugar %></h2>
+    <h2>(Capacidad: <%= lugares.capacidad %>)</h2>
+  </div>
+  <div class="function">
+    <% lugares.funciones.forEach(funcion => { %>
+      <div class="title-delete">
+        <h3>Función <%= funcion.hora %></h3>
+        <button data-hour="<%= funcion.hora %>" id="delete-function-<%= funcion.id %>" class="btn btn-sm" onclick="handleDelete(this)">Eliminar función</button>
+      </div>
+      <div class="reserves">
+        <%- partial('./tabla-reserva', { reservas: funcion.reservas }) %> 
+      </div>
+    <% }) %>
+  </div>
+</div>

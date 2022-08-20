@@ -1,0 +1,7 @@
+show databases;
+use "database-name";
+db.createCollection("collection-name");
+db.getCollectionNames();
+db."collection-name"; //double tab
+db."collection-name".insert(Object: { "key": "value" });
+db."collection-name".find();
